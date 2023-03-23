@@ -35,10 +35,15 @@
 >   * 모든 자바스크립트 문법을 지원한다
 >   * 자바스크립트 문법에 XML과 HTML을 섞어서 사용한다.
 >   * 만일 HTML이나 XML에 자바스크립트 코드를 사용하고 싶다면 {}괄호를 사용한다.
-> * ### (실습) JSX 코드 작성해 보기
+> * ### 3.5 (실습) JSX 코드 작성해 보기
 >   * create-react-app으로 만든 프로젝트를 VSCode로 연다.
 >   * src 디렉토리에 'chapter_03'이라는 디렉토리를 생성한다.
 >   * 생성한 디렉토리에 Book.jsx라는 파일을 생성한다.
+>   * Book.jsx를 생성한 디렉토리에 Library.jsx 파일을 생성한다.
+>   * 프로젝트 root의 index.js 파일을 오픈한다.
+>   * Library컴포넌트를 import한다.
+>   * render 함수에서 App을 Library 컴포넌트로 수정한다
+>   * npm start로 app을 실행하고 결과를 확인한다.
 
 ## 2023.03.16 3주차<br>
 1. 1교시<br>
