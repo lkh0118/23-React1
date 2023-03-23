@@ -5,7 +5,30 @@
 ## 2023.03.23 4주차<br>
 1. 1교시<br>
 
-> * ### 
+> * ### 새 프로젝트 만들기 
+>   1. README.md 백업
+>   2. 23-react1 폴더 삭제/이름변경
+>   3. 새 프로젝트 생성(23-react1)
+>   4. GITHUB 저장소 삭제
+>   5. 23-react1 push
+>   6. GITHUB 저장소 확인
+>   7. README.md 파일 복원
+>   8. create-react-add 23-react1 및 npm start
+
+2. 2교시<br>
+
+> * ### 3.1 JSX란?
+>   * JavaScript에 XML을 추가한 확장 언어다.
+> * ### 3.2 JSX의 역할
+>   * JSX는 내부적으로 XML/HTML 코드를 자바 스크립트로 변환한다.
+>   * React가 createElement함수를 사용하여 자동으로 자바스크립트로 변환해준다.
+>   * 만일 JS작업할 경우 직접 createElement함수를 사용해야 합니다.
+>   * JSX는 가독성을 높여주는 역할을 한다.
+> * ### 3.3 JSX의 장점
+>   * 코드가 간결해 진다.
+>   * 가독성이 향상 된다.
+>   * Injection Attack이라 불리는 해킹 방법을 벙어함으로써 보안에 강하다.
+> 
 
 ## 2023.03.16 3주차<br>
 1. 1교시<br>
