@@ -2,6 +2,55 @@
 학교 React1 과목 공부한 내용들
 <br><br>
 
+## 2023.04.06 6주차<br>
+1. 1교시
+> * ### 5.5 컴포넌트 추출
+>   * 복잡한 컴포넌트를 쪼개서 여러 개의 컴포넌트로 나눌 수도 있다.
+>   * 큰 컴포넌트에서 일부를 추출해서 새로운 컴포넌트를 만드는 것이다. <br><br> p.s. 실무에서는 처음부터 1개의 컴포넌트에 하나의 기능만 사용하도록 설계하는것이 좋다.
+>   * Comment는 댓글 표시 컴포넌트다.
+>   * 내부에는 이미지, 이름, 댓글과 작성일이 포함되어 있다.
+>   * 첫 번째로 이미지 부분을 Avater 컴포넌트로 추출
+```javascript 
+function Avater(props) {
+    return (
+        <img className = "avater"
+            src = {props.user.avaterUrl}
+            alt = {prop.user.name}
+        />
+    );
+}
+```
+>   * 두 번째로 사용자 정보 부분을 추출
+>   * 컴포넌트 이름은 UserInfo로 한다. 
+>   * UserInfo 안에 Avater 컴포넌트를 넣어서 완성시키기
+```javascript
+function UserInfo(props) {
+    
+}
+```
+>   * 추출 후 다시 결합한 UserInfo를 Comment 컴포넌트에 반영하면 다음과 같은 모습이 된다.
+>   * 처음에 비해 가독성이 높아진 것을 확인 가능
+```javascript
+function Comment(props) {
+    return (
+        <div className = "comment">
+            <>
+    )
+}
+```
+> * ### 5.6 (실습) 댓글 컴포넌트 만들기 (chapter_05 Comment.jsx 참조)
+>   * 프로젝트 디렉토리에 /src/chapter_05 디렉토리를 새로 생성
+>   * 그 안에 Comment.jsx라는 파일 생성
+>   * Comment 컴포넌트 만들기
+>   * 그 다음 CommentList.js를 생성, 컴포넌트를 다음과 같이 코딩
+>   * CommentList를 렌더링하기 위해 index.js를 다음과 같이 수정
+>   * 4장에서 사용했던 setInterval(() => {}, 1000) 부분은 삭제
+>   * `<Clock />`을 `<CommentList />`로 수정.
+>   * Comment 컴포넌트에 css를 다음과 같이 작성
+>   * 다음으로 Comment에 style을 적용할 수 있도록 다음과 같이 수정
+>   * 
+
+
 ## 2023.03.30 5주차<br>
 1. 1교시
 > * ### 4.1 엘리먼트에 대해 알아보기
@@ -82,7 +131,7 @@
         `class Welcome extends React.Componenet {`<br>`
             render() {`<br>`
                 return <h1>안녕, {this.props.name}</h1>;
-            }
+            }`<br>`
         }`
 > * #### 4. 컴포넌트 이름 짓기
 >   * 이름은 항상 대문자로 시작
