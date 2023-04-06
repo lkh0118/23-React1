@@ -22,7 +22,7 @@ class NotificationList extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            Notification: [],
+            notifications: [],
         }
     }
 
@@ -53,7 +53,7 @@ class NotificationList extends React.Component {
     render() {
         return (
             <div>
-                {this.state.Notifications.map((notification) => {
+                {this.state.notifications.map((notification) => {
                     return (
                         <Notification
                             key={notification.id}

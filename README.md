@@ -95,6 +95,23 @@ class LikeButton extends React.Component {
 >   * 불가능하다고 생각하는 것이 좋다.
 >   * state를 변경하고자 할 때에는 setstate()함수를 사용한다.
 
+3. 3교시
+> * ### 6.2 생명주기에 대해 알아보기
+>   * 생명주기는 컴포넌트의 생성 시점, 사용 시점, 종료 시점을 나타내는 것이다.
+>   * constructor가 실행되면서 컴포넌트가 생성된다
+>   * 생성 직후 componentDidMount()함수가 호출된다.
+>   * 컴포넌트가 소멸하기 전까지 여러 번 렌더링 한다.
+>   * 렌더링은 props, setState(), forceUpdate()에 의해 상태가 변경되면 이루어진다.
+>   * 렌더링이 끝나면 commponentDinUpdate() 함수가 호출된다.
+>   * 컴포넌트가 언마운트 되면 componentWillUnmount()함수가 호출된다.
+> * ### 6.3 (실습) state와 생명주기 함수 사용하기 (실습은 파일 참조)
+> * #### 2. (실습) React Developer Tools 설치
+>   * 구글에서 'React Developer Tools'로 검색하면 찾을 수 있다.
+>   * 스폰서 링크 때문에 교재처럼 맨 위에 오지 않을 수 있다.
+>   * 링크를 클릭하면 'chrome 웹 스토어'로 이동된다.
+>   * 'Chrome에 추가'버튼을 클릭해서 설치한다.
+
+
 
 
 ## 2023.03.30 5주차<br>
