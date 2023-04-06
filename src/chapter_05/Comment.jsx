@@ -34,19 +34,18 @@ const styles = {
 
 function Comment(props) {
     return (
-        <div style="{styles.wrapper">
-            <div style="{styles.imageContainer}">
+        <div style={styles.wrapper}>
+            <div style={styles.imageContainer}>
                 <img
                     src="https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png"
                     alt="프로필 이미지"
                     style={styles.image}
                 />
             </div>
+            
             <div sTyle={styles.contentContainer}>
-                <span style={styles.nameText}>신동욱</span>
-                <span style={styles.commentText}>
-                    내가 만든 첫 컴포넌트
-                </span>
+                <span style={styles.nameText}>{props.name}</span>
+                <span style={styles.commentText}>{props.comment}</span>
             </div>
         </div>
     );

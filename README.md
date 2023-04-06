@@ -25,7 +25,14 @@ function Avater(props) {
 >   * UserInfo 안에 Avater 컴포넌트를 넣어서 완성시키기
 ```javascript
 function UserInfo(props) {
-    
+    return (
+        <div className="user-info">
+            <Avater user={props.user} />
+            <div className="user-info-name">
+                {props.user.name}
+            </div>
+        </div>
+    );
 }
 ```
 >   * 추출 후 다시 결합한 UserInfo를 Comment 컴포넌트에 반영하면 다음과 같은 모습이 된다.
@@ -34,8 +41,15 @@ function UserInfo(props) {
 function Comment(props) {
     return (
         <div className = "comment">
-            <>
-    )
+            <UserInfo user={props.author} />
+            <div className="comment-text">
+                {props.text}
+            </div>
+            <div className="comment-date">
+                {formatDate(props.date)}
+            </div>
+        </div>
+    );
 }
 ```
 > * ### 5.6 (실습) 댓글 컴포넌트 만들기 (chapter_05 Comment.jsx 참조)
@@ -48,7 +62,39 @@ function Comment(props) {
 >   * `<Clock />`을 `<CommentList />`로 수정.
 >   * Comment 컴포넌트에 css를 다음과 같이 작성
 >   * 다음으로 Comment에 style을 적용할 수 있도록 다음과 같이 수정
->   * 
+
+2. 2교시
+>   * 이번에는 Comment를 범용으로 사용 할 수 있도록 이름과 코멘트를 props로 받도록 수정
+>   * props로 전달받은 것이 없어서 아무 것도 출력되지 않음
+>   * 이렇게 코드를 작성하면 매번 컴포넌트를 수정해야 하기 때문에 나쁜 코드의 예다.
+>   * 별도의 객체로 받아 컴포넌트에서 분리하여 출력하도록 해야 한다.
+>   * 이때 사용하는 함수가 map() 함수다.
+> * ### 6.1 state
+> * #### 1. State란?
+>   * State는 리액트 컴포넌트의 상태를 의미한다.
+>   * 상태의 의미는 정상인지 비정상인지가 아니라 컴포넌트의 데이터를 의미한다.
+>   * 정확히는 컴포넌트의 변경가능한 데이터를 의미한다.
+>   * State가 변하면 다시 렌더링이 되기 때문에 렌더링과 관련된 값만 state에 포함시켜야 한다.
+> * #### 2.state의 특징
+>   * 리액트 만의 특별한 형태가 아닌 단지 자바스크립트 객체일 뿐이다.
+>   * 예의 LikeButton은 class 컴포넌트다.
+>   * constructor는 생성자이고 그 안에 있는 this.state가 현 컴포넌트의 state다.
+```javascript
+class LikeButton extends React.Component {
+    constructor(props) {
+        super(props);
+
+        this.state = (
+            liked: false
+        );
+    }
+}
+```
+>   * 함수형에서는 useState()라는 함수를 사용한다.
+>   * state는 변경 가능하다고 했지만 직접 수정해서는 안된다.
+>   * 불가능하다고 생각하는 것이 좋다.
+>   * state를 변경하고자 할 때에는 setstate()함수를 사용한다.
+
 
 
 ## 2023.03.30 5주차<br>
