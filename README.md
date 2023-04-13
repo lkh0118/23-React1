@@ -93,6 +93,94 @@ useEffect(() => {
 >   * 따라서 렌더링이 일어나는 동안 실행돼서는 안될 작업을 넣으면 안된다.
 >   * 예를 들면 useEffect에서 실행되어야 할 사이드 이펙트 같은 것이다.
 
+2. 2교시
+```javascript
+const memoizedValue = useMemo(
+    () => {
+        //연산량이 높은 작업을 수행하여 결과를 반환
+        return computeExpensiveValue(의존성 변수1, 의존성 변수2);
+    },
+    [의존성 변수1, 의존성 변수2]
+)
+```
+>   * 다음 코드와 같이 의존성 배열을 넣지 않을 경우, 렌더링이 일어날 때마다 매번 함수가 실행된다.
+>   * 따라서 의존성 배열을 넣지 않는 것은 의미가 없다.
+>   * 만약 빈 배열을 넣게 되면 컴포넌트 마운트 시에만 함수가 실행된다.
+```javascript
+const memoizedValue = useMemo(
+    () => computeExpensiveValue(a, b)
+);
+```
+> * ### 7.5 useCallback
+>   * useCallback() 훅은 useMemo()와 유사한 역할을 합니다.
+>   * 차이점은 값이 아닌 함수를 반환한다는 점이다.
+>   * 의존성 배열을 파라미터로 받는 것은 useMemo()와 동일하다.
+>   * 파라미터로 받은 함수를 콜백이라고 부른다
+>   * useMemo와 마찬가지로 의존성 배열 중 하나라도 변경되면 콜백함수를 반환한다
+```javascript
+const memoizedCallback = useCallback(
+    () => {
+        doSomething(의존성 변수1, 의존성 변수2)
+    },
+    [의존성 변수1, 의존성 변수2]
+);
+```
+> * ### 7.6 useRef
+>   * useRef() 훅은 레퍼런스를 사용하기 위한 훅이다.
+>   * 레퍼런스란 특정 컴포넌트에 접근할 수 있는 객체를 의미한다.
+>   * useRef() 훅은 바로 이 레퍼런스 객체를 반호나한다,
+>   * 레퍼런스 객체에는 .current라는 속성이 있는데, 이것은 현재 참조하고 있는 엘리먼트를 의미한다.
+```javascript
+        const refContainer = useRef(초깃값);
+```
+>   * 이렇게 반환된 레퍼런스 객체는 컴포넌트의 라이프타임 전체에 걸쳐서 유지된다.
+>   * 즉, 컴포넌트가 마운트 해제 전까지는 계속 유지된다는 의미다.
+> * ### 7.7 훅의 규칙
+>   * 첫 번째 규칙은 무조건 최상의 레벨에서만 호출해야 한다는 것이다. 여기서 최상위는 컴포넌트의 최상위 레벨을 의미한다.
+>   * 따라서 반복문이나 조건문 또는 중첩된 함술들 안에서 훅을 호출하면 안된다.
+>   * 이 규칙에 따라서 훅은 컴포넌트가 렌더링 될 때마다 같은 순서로 호출되어야 한다.
+>   * 페이지 224의 코드는 조건에 따라 호출됨으로 잘못된 코드다.
+>   * 두번째 규칙은 리액트 함수형 컴포넌트에서만 훅을 호출해야 한다는 것이다.
+>   * 따라서 일반 자바스크립트 함수에서 훅을 호출하면 안된다.
+>   * 훅은 리액트의 함수형 컴포넌트 혹은 직접 만든 커스텀 훅에서만 호출 할 수 있다.
+> * ### 7.8 나만의 훅 만들기
+>   * 필요하다면 직접 훅을 만들어 쓸 수도 있다. 이 것을 커스텀 훅이라고 한다.
+> * #### 1. 커스텀 훅을 만들어야 하는 상황
+>   * 예제 UserStatus 컴포넌트는 isOnline이라는 state에 따라서 사용자의 상태가 온라인인지 아닌지를 텍스트로 보여주는 컴포넌트다.
+```javascript
+import React, { useState, useEffect } from "react";
+
+function UserStatus(props) {
+    const [isOnline, setIsOnline] = useState(null);
+
+    useEffect(() => {
+        function handleStatusChange(status) {
+            setIsOnline(status.isOnline);
+        }
+
+        ServerAPI.subscribeUserStatus(props.user.id, handleStatusChange);
+        return () => {
+            ServerAPI.unsubscribeUserStatus(props.user.id, handleStatusChange);
+        }
+    });
+
+    if (isOnline === null) {
+        return '대기중...';
+    }
+
+    return isOnline ? '온라인' : '오프라인';
+}
+```
+> * #### 2. 커스텀 훅 추출하기
+>   * 두 개의 자바스크립트 함수에서 하나의 로직을 공유하도록 하고 싶을 때 새로운 함수를 하나 만드는 방법을 사용한다.
+>   * 리액트 컴포넌트와 훅은 모두 함수이기 때문에 동일한 방법을 사용 할 수 있다.
+>   * 이름을 use로 시작하고, 내부에서 다른 훅을 호출하는 자바스크립트 함수를 만들면 된다.
+>   * 한 가지 주의 할 점은 일반 컴포넌트와 마찬가지로 다른 훅을 호출하는 것은 무조건 커스텀 훅의 최상위 레벨에서만 해야한다.
+>   * 커스텀 훅은 일반 함수와 같다고 생각해도 된다.
+>   * 다만 이름은 use로 시작하도록 한다는 것만 다르다.
+> * #### 3. 커스텀 훅 사용하기
+>
+
 ## 2023.04.06 6주차<br>
 1. 1교시
 > * ### 5.5 컴포넌트 추출
