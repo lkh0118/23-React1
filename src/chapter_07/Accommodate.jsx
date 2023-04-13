@@ -26,7 +26,7 @@ function Accommodate(props) {
             </button>
             <button onClick={decreaseCount}>퇴장</button>
 
-            {isFull && <p Style={{ color: "red"}}>정원이 가득찼습니다.</p>}
+            {isFull && <p style={{ color: "red"}}>정원이 가득찼습니다.</p>}
         </div>
     );
 }
