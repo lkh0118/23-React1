@@ -2,6 +2,93 @@
 학교 React1 과목 공부한 내용들
 <br><br>
 
+## 2023.04.27 9주차<br>
+1. 1교시
+> * ### 8.1 이벤트 처리하기
+>   * DOM에서 클릭 이벤트를 처리하는 예제 코드
+```javascript
+<button onclick="activate()">
+    Activate
+</button>
+```
+>   * React에서 클릭 이벤트 처리하는 예제 코드
+```javascript
+<button onClick={activate}>
+    Activate
+</button>
+```
+>   * 둘의 차이점은
+>   1) 이벤트 이름이 onclick에서 onClick으로 변경.(Camel case)
+>   2) 전달하려는 함수는 문자열에서 함수 그대로 전달.
+>   * 이벤트가 발생했을 때 해당 이벤트를 처리하는 함수를 "이벤트 핸들러(Event Handler)" 라고 한다. 또는 이벤트가 발생하는 것을 계속 듣고 있다는 의미로 "이벤트 리스너(Event Listener)"라고 한다.
+>   * 이벤트 핸들러 추가하는 방법은
+>   * 버튼을 클릭하면 이벤트 핸들러 함수인 handleClick() 함수를 호출하도록 되어있다.
+>   * bind를 사용하지 않으면 this.handleClick은 글로벌 스코프에서 호출되어, undefined으로 사용할 수 없기 때문이다.
+>   * bind를 사용하지 않으려면 화살표 함수를 사용하는 방법도 있다.
+>   * 하지만 클래스 컴포넌트는 이제 사용하지 않기 때문에 이 내용은 참고만 하자.
+```javascript
+class Toggle extends React.Component {
+    constructor(props) {
+        super(props);
+
+        this.state = {isToggleOn: true };
+
+        this.handleClick = this.handleClick.bind(this);
+    }
+
+    handleClick() {
+        this.setState(prevState => ({
+            isToggleOn: !prevState.isToggleOn
+        }));
+    }
+
+    render() {
+        return (
+            <button onClick={this.handleClick}>
+                {this.statie.isToggleOn ? '켜짐' : '꺼짐'}
+            </button>
+        )
+    }
+}
+```
+>   * 클래스형을 함수형으로 바꾸면 다음 코드와 같다.
+>   * 함수형에서 이벤트 핸들러를 정의하는 방법은 두가지다.
+>   * 함수형에서는 this를 사용하지 않고, onClick에서 바로 HandleClick을 넘기면 된다.
+```javascript
+function Toggle(props) {
+    const [isToggleOn, setIsToggleOn] = useState(true);
+
+    //방법 1. 함수 안에 함수로 정의
+    function handleClick() {
+        setIsToggleOn((isToggleOn) => !isToggleOn);
+    }
+
+    //방법 2. arrow function을 사용하여 정의
+    const handleClick = () => {
+        setIsToggleOn((isToggleOn) => !isToggleOn);
+    }
+
+    return (
+        <button onClick={handleClick}>
+            {isToggleOn ? "켜짐" : "꺼짐" }
+        </button>
+    );
+}
+```
+> * ### 8.2 Arguments 전달하기
+>   * 함수를 정의할 때는 피라미터(parameter) 혹은 매개변수, 함수를 사용할 때는 아귀먼트(Argument) 혹은 인자라고 부른다.
+>   * 이벤트 핸들러에 매개변수를 전달해야 하는 경우도 많습니다.
+```javascript
+<button onClick={(event) => this.deleteItem(id, event)}>삭제하기</button>
+<button onClick={this.deleteItem.bind(this, id)}>삭제하기</button>
+```
+>   * 위의 코드는 모두 동일한 역할을 하지만 하나는 화살표 함수를, 다른 하나는 bind를 사용했다.
+>   * event라는 매개변수는 리액트의 이벤트 객체를 의미한다.
+>   * 두 방법 모두 첫 번째 매개변수는 id이고 두 번째 매개변수로 event가 전달된다.
+>   * 첫 번째 코드는 명시적으로 event를 매개변수로 넣어 주었고, 두 번째 코드는 id 이후 두번째 매개변수로 event가 자동 전달 된다. (이 방법은 클래스형에서 사용하는 방법이다.)
+>   * 함수형 컴포넌트에서 이벤트 핸들러에 매개변수를 전달할 때는 254페이지 코드와 같이 한다.
+
+
 ## 2023.04.13 7주차<br>
 1. 1교시
 > * ### 7.1 훅이란 무엇인가?
