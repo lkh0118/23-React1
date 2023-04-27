@@ -3,6 +3,7 @@
 <br><br>
 
 ## 2023.04.27 9주차<br>
+
 1. 1교시
 > * ### 8.1 이벤트 처리하기
 >   * DOM에서 클릭 이벤트를 처리하는 예제 코드
@@ -87,6 +88,82 @@ function Toggle(props) {
 >   * 두 방법 모두 첫 번째 매개변수는 id이고 두 번째 매개변수로 event가 전달된다.
 >   * 첫 번째 코드는 명시적으로 event를 매개변수로 넣어 주었고, 두 번째 코드는 id 이후 두번째 매개변수로 event가 자동 전달 된다. (이 방법은 클래스형에서 사용하는 방법이다.)
 >   * 함수형 컴포넌트에서 이벤트 핸들러에 매개변수를 전달할 때는 254페이지 코드와 같이 한다.
+
+2. 2교시
+> * ### 8.3 (실습) 클릭 이벤트 처리하기
+>   1) ConfirmButton 컴포넌트 만들기.
+>   2) 클래스 필드 문법 사용하기
+>   3) 함수 컴포넌트로 변경하기
+> * ### 9.1 조건부 렌더링이란?
+>   * 여기서 조건이란 우리가 알고 있는 조건문의 조건이다.
+```javascript
+function Greeting(props) {
+    const isLoggedIn = props.isLoggedIn;
+    if (isLoggedIn) {
+        return <UserGreeting />;
+    }
+    return <GuestGreeting />;
+}
+```
+>   * props로 전달 받은 isLoggedIn이 true면 <UserGreeting />을, false면 <GuestGreeting /> 을 return한다.
+>   * 이와 같은 렌더링을 조건부 렌더링이라고 한다.
+> * ### 9.2 엘리먼트 변수
+>   * 렌더링해야 될 컴포넌트를 변수처럼 사용하는 방법이 엘리먼트 변수다.
+>   * 272페이지 코드처럼 state에 따라 button 변수에 컴포넌트의 객체를 저장하여 return문에서 사용하고 있다.
+```javascript
+fucntion LoginControl(props) {
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+    const handleLoginClick = () => {
+        setIsLoggedIn(true);
+    }
+
+    const handleLogoutClick = () => {
+        setIsLoggedIn(false);
+    }
+
+    let button;
+    if (isLoggedIn) {
+        button = <LogoutButton onClick={handleLogoutClick} />;
+    } else {
+        button = <LoginButton onClick={handleLoginClick} />;
+    }
+
+    return (
+        <div>
+            <Greeting isLoggedIn={isLoggedIn} />
+            {button}
+        </div>
+    )
+}
+```
+> * ### 9.3 인라인 조건
+>   * 필요한 곳에 조건문을 직접 넣어 사용하는 방법이다.
+>   1) 인라인 if
+>   * if문을 직접 사용하지 않고, 동일한 효과를 내기 위해 && 논리 연산자를 사용한다.
+>   * &&는 and연산자로 모든 조건이 참일때만 참이 된다.
+>   * 첫 번째 조건이 거짓이면 두 번째 조건은 판단할 필요가 없다. 단축평가
+```javascript
+true && expression -> expression
+false && expression -> false
+```
+```jsx
+function Mailbox(props) {
+    const unreadMessages = props.unreadMessages;
+
+    return (
+        <div>
+            <h1>안녕하세요!</h1>
+            {unreadMessage.length > 0 &&
+                <h2>현재 {unreadMessages.length}개의 읽지 않은 메시지가 있습니다.
+                </h2>
+            }
+        </div>
+    );
+}
+```
+>   * 판단만 하지 않는 것이고 결과 값은 그대로 리턴된다.
+
 
 
 ## 2023.04.13 7주차<br>
