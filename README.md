@@ -164,6 +164,33 @@ function Mailbox(props) {
 ```
 >   * 판단만 하지 않는 것이고 결과 값은 그대로 리턴된다.
 
+3. 3교시
+>   2) 인라인 if - else
+>   * 삼항 연산자를 사용한다.
+>   * 문자열이나 엘리먼트를 넣어서 사용할 수도 있다.
+```jsx
+function UserState(props) {
+    return (
+        <div>
+            이 사용자는 현재 <b>{props.isLoggedIn ? '로그인' : '로그인하지 않은'} </b> 상태 입니다.
+        </div>
+    )
+}
+```
+> * ### 9.4 컴포넌트 렌더링 막기
+>   * 컴포넌트를 렌더링하고 싶지 않을 때에는 null을 리턴한다.
+```jsx
+function WarningBanner(props) {
+    if (!props.warning) {
+        return null;
+    }
+
+    return (
+        <div>경고!</div>
+    );
+}
+```
+> * ### 9.5 (실습) 로그인 여부를 나타내는 툴바 만들기
 
 
 ## 2023.04.13 7주차<br>
