@@ -64,6 +64,80 @@ ReactDOM.renter(
 >   * 이 키는 리스트에서 어떤 아이템이 변경, 추가 또는 제거되었는지 구분하기 위해서 사용한다.
 >   * 키는 같은 리스트에 있는 엘리언트 사이에서만 고유한 값이면 된다.
 > * ### 10.5 (실습) 출석부 출력하기
+2. 2교시
+
+> * ### 11.1 폼이란 무엇인가?
+>   * 폼은 일반적으로 사용자로부터 입력을 받이 귀한 양식에서 많이 사용된다.
+> * ### 11.2 제어 컴포넌트
+>   * 제어 컴포넌트는 사용자가 입력한 값에 접근하고 제어할 수 있도록 해주는 컴포넌트다.
+>   * 다음 코드는 사용자의 이름을 입력 받는 HTML폼을 리액트 제어 컴포넌트로 만든 것이다.
+```jsx
+function NameForm(props) {
+    const [value, setValue] = useState('');
+
+    const handleChange = (event) => {
+        setValue(event.target.value);
+    }
+
+    const handleSubmit = (event) => {
+        alert('입력한 이름: ' + value);
+        event.preventDefault();
+    }
+
+    return (
+        <form onSubmit={handleSubmit}>
+            <label>
+                이름:
+                <input type="text" value={value} onChange={handleChange} />
+            </label>
+            <button type="submit">제출</button>
+        </form>
+    )
+}
+```
+> * ### 11.3 textarea 태그
+>   * HTML에서는 `<textarea>`태그의 children으로 텍스트가 들어가는 형태다.
+>   * 리액트에서는 state를 통해 `<textarea>` 태그에 value라는 attribute를 사용하여 텍스트를 표시한다.
+> * ### 11.4 select 태그
+>   * select 태그도 textarea와 동일하다.
+```html
+<select>
+    <option value="apple">사과</option>
+    <option value="banana">바나나</option>
+    <option selected value="grape">포도</option>
+    <option value="watermelon">오렌지</option>
+</select>
+```
+```jsx
+function FruitSelect(props) {
+    const [value, setValue] = useState('grape');
+
+    const handleChange = (event) => {
+        setValue(event.target.value);
+    }
+
+    const handleSubmit = (event => {
+        alert('선택한 과일: ' + value);
+        event.preventDefault();
+    })
+
+    return(
+        <from onSubmit={handleSubmit}>
+            <label>
+                과일을 선택하세요:
+                <select value={value} onChange={handleChange}>
+                    <option value="apple">사과</option>
+                    <option value="banana">바나나</option>
+                    <option value="grape">포도</option>
+                    <option value="watermelon">수박</option>
+                </select>
+            </label>
+            <button type="submit">제출</button>
+        </form>
+    )
+}
+```
+3. 3교시
 
 ## 2023.04.27 9주차<br>
 
