@@ -138,6 +138,19 @@ function FruitSelect(props) {
 }
 ```
 3. 3교시
+> * ### 11.5 File input 태그
+>   * File input 태그는 그 값이 읽기 전용이기 때문에 리액트에서는 비제어 컴포넌트가 된다.
+> * ### 11.7 Input Null Value
+>   * 제어 컴포넌트에 value prop을 정해진 값으로 넣으면 코드를 수정하지 않는 한 입력값을 바꿀 수 없다.
+>   * 만약 value prop은 넣되 자유롭게 입력 할 수 있게 만들고 싶다면 값이 undefined 또는 null값을 넣어주면 된다.
+```jsx
+ReactDom.render(<input value="hi" />, rootNode);
+
+setTimeout(function() {
+    ReactDom.render(<input value={null} />, rootNode);
+}, 1000);
+```
+> * ### 11.8 (실습) 사용자 정보 입력받기
 
 ## 2023.04.27 9주차<br>
 
