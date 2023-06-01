@@ -2,6 +2,37 @@
 학교 React1 과목 공부한 내용들
 <br><br>
 
+## 2023.06.01 14주차 <br>
+1. 1교시
+> * ### 15.1 CSS
+>   * 6) 많이 사용하는 기타 속성
+>   * 엘리먼트의 배경색을 지정하기 위한 background-color속성이 있다.
+>   * 값으로 색상의 값이 들어가게 되는데 CSS에서 색상 값으로 사용할 수 있는 것과 예제는 아래에 있다.
+>       * 16진수 컬러 값 : #ff0000
+>       * 투명도를 가진 16진수 컬러값 : #ff000055
+>       * RGB 컬러 값 : rgb(255, 0, 0)
+>       * RGBA 컬러 값 : rgba(255, 0, 0, 0.5)
+>       * HSL 컬러 값 : hsl(120, 100%, 25%)
+>       * HSLA 컬러값 : hsla(120, 100%, 25%, 0.3)
+>       * 미리 정의된 색상의 이름 : red
+>   * 보통은 미리 정의된 색상의 이름을 사용하거나 16진수 컬러 값을 사용한다.
+>   * 엘리먼트의 배경색을 지정하기 위해서는 background-color 속성의 값으로 컬러 값을 넣어주면 된다.
+>   * border 속성은 border-width, border-style, border-color 등 세가지 속성을 축약시켜서 한 번에 사용할 수 있게 만든 것이다.
+>   * 각 속성을 사용하여 테두리의 두께, 스타일, 색상을 지정할 수 있고, border 속성을 사용하여 한번에 지정할 수 있다.
+>   * backgroudn-color 속성과 border 속성의 사용법은 아래와 같다.
+```jsx
+div {
+    background-color: color | transparent;
+    border: border-width border-style border-color
+}
+```
+> * ### 15.2 styled-components
+>   * 1) styled-componenets 설치하기
+>   * npm을 사용하는 경우 (npm install --save style-components)
+>   * 2) styled-components 기본 사용법
+>   * 태그드 템플릿 리터럴을 사용하여 구성 요소의 스타일을 지정한다.
+>   *  
+
 ## 2023.05.25 13주차<br>
 1. 1교시
 > * ### 14.5 여러 개의 컨텍스트 사용하기
