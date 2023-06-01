@@ -14,11 +14,12 @@ import Calculator from './chapter_12/Calculator';
 import ProfileCard from './chapter_13/ProfileCard';
 import DarkOrLight from './chapter_14/DarkOrLight';
 import MainPage from './chapter_15/MainPage';
+import Sample from './chapter_15/Sample';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <MainPage />
+    <Sample />
   </React.StrictMode>
 );
 
